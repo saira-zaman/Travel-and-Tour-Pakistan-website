@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Travel & Tour Pakistan — Explore Pakistan</title>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ===== Reset & Base ===== */
+:root{
+  --primary:#0c5e3a;
+  --primary-dark:#083b2a;
+  --accent:#d4a017;
+  --accent-light:#f0c330;
+  --muted:#6b7280;
+  --bg:#f6fbf9;
+  --card:#ffffff;
+  --text-dark:#111827;
+  --border:#e5e7eb;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html {scroll-behavior: smooth;}
+body{font-family:'Poppins',sans-serif; background:var(--bg); color:var(--text-dark); line-height:1.6; -webkit-font-smoothing:antialiased;}
+
+/* ===== MODERN HEADER ===== */
+.header {
+  position:sticky; 
+  top:0; 
+  z-index:1000;
+  background:rgba(255,255,255,0.95);
+  backdrop-filter:blur(10px);
+  box-shadow:0 2px 20px rgba(0,0,0,0.08);
+  border-bottom:1px solid rgba(12,94,58,0.1);
+  transition:all 0.3s ease;
+}
+.header.scrolled{
+  box-shadow:0 4px 30px rgba(0,0,0,0.12);
+  background:rgba(255,255,255,0.98);
+}
+
+.navbar {
+  max-width:1280px; 
+  margin:0 auto; 
+  display:flex; 
+  align-items:center;
+  justify-content:space-between; 
+  padding:16px 24px;
+  gap:20px;
+}
+
+/* Logo with Icon */
+.logo-container {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  text-decoration:none;
+}
+.logo-icon {
+  width:42px;
+  height:42px;
+  background:linear-gradient(135deg, var(--primary), var(--primary-dark));
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 4px 12px rgba(12,94,58,0.2);
+}
+.logo-icon svg {
+  width:24px;
+  height:24px;
+  fill:white;
+}
+.logo-text {
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+.logo-text .main {
+  color:var(--primary);
+  font-weight:800;
+  font-size:20px;
+  letter-spacing:-0.5px;
+  line-height:1;
+}
+.logo-text .sub {
+  color:var(--accent);
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+/* Navigation */
+.nav-links { 
+  list-style:none; 
+  display:flex; 
+  gap:8px; 
+  align-items:center; 
+}
+.nav-links a { 
+  color:var(--text-dark); 
+  text-decoration:none; 
+  padding:10px 16px; 
+  border-radius:10px; 
+  font-weight:500;
+  font-size:15px;
+  transition:all 0.2s ease;
+  position:relative;
+}
+.nav-links a:hover { 
+  background:rgba(12,94,58,0.08);
+  color:var(--primary);
+  transform:translateY(-1px);
+}
+.nav-links a.active::after {
+  content:'';
+  position:absolute;
+  bottom:6px;
+  left:50%;
+  transform:translateX(-50%);
+  width:6px;
+  height:6px;
+  background:var(--accent);
+  border-radius:50%;
+}
+
+.cta-btn { 
+  background:linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color:white !important;
+  padding:10px 24px !important;
+  border-radius:12px;
+  font-weight:700;
+  box-shadow:0 4px 16px rgba(12,94,58,0.25);
+  transition:all 0.3s ease;
+}
+.cta-btn:hover {
+  transform:translateY(-2px);
+  box-shadow:0 6px 24px rgba(12,94,58,0.35);
+  background:linear-gradient(135deg, var(--primary-dark), #052e1f) !important;
+}
+
+/* Mobile toggle */
+.menu-toggle { 
+  display:none; 
+  width:44px; 
+  height:44px; 
+  border-radius:10px; 
+  align-items:center; 
+  justify-content:center; 
+  cursor:pointer; 
+  background:var(--primary);
+  border:none;
+  transition:all 0.2s;
+}
+.menu-toggle:hover {
+  background:var(--primary-dark);
+  transform:scale(1.05);
+}
+.menu-toggle svg {
+  transition:transform 0.3s;
+}
+.menu-toggle.active svg {
+  transform:rotate(90deg);
+}
+
+@media (max-width:920px){
+  .nav-links{ 
+    position:fixed; 
+    right:20px; 
+    top:80px; 
+    background:white;
+    flex-direction:column; 
+    padding:20px; 
+    gap:8px; 
+    border-radius:16px; 
+    display:none;
+    box-shadow:0 10px 40px rgba(0,0,0,0.15);
+    border:1px solid var(--border);
+    min-width:200px;
+  }
+  .nav-links.show{ display:flex; }
+  .menu-toggle{ display:flex; }
+  .logo-text .sub { display:none; }
+}
+
+/* ===== HERO ===== */
+.hero {
+  position:relative;
+  height:85vh;
+  min-height:500px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+.hero-slide {
+  position:absolute; 
+  inset:0; 
+  background-size:cover; 
+  background-position:center; 
+  opacity:0; 
+  transform:scale(1.05); 
+  transition:opacity 1s ease, transform 1s ease;
+}
+.hero-slide.show { 
+  opacity:1; 
+  transform:scale(1); 
+}
+.hero-overlay { 
+  position:absolute; 
+  inset:0; 
+  background:linear-gradient(180deg, rgba(0,0,0,0.5), rgba(6,45,32,0.4)); 
+}
+.hero-inner { 
+  position:relative; 
+  z-index:3; 
+  text-align:center; 
+  color:white; 
+  max-width:1100px; 
+  padding:40px 20px; 
+}
+.hero-badge {
+  display:inline-block;
+  background:rgba(212,160,23,0.2);
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(212,160,23,0.3);
+  color:var(--accent-light);
+  padding:8px 20px;
+  border-radius:30px;
+  font-size:14px;
+  font-weight:600;
+  margin-bottom:20px;
+  letter-spacing:0.5px;
+}
+.hero-inner h1 { 
+  font-size:62px; 
+  line-height:1.1; 
+  margin-bottom:20px; 
+  font-weight:800;
+  text-shadow:0 4px 30px rgba(0,0,0,0.5);
+  letter-spacing:-1px;
+}
+.hero-inner p { 
+  font-size:20px; 
+  color:rgba(255,255,255,0.95); 
+  margin-bottom:32px; 
+  max-width:700px; 
+  margin-left:auto;
+  margin-right:auto;
+  line-height:1.6;
+}
+.hero-actions { 
+  display:flex; 
+  gap:16px; 
+  justify-content:center; 
+  flex-wrap:wrap; 
+}
+.hero-actions .btn-primary {
+  background:linear-gradient(135deg, var(--accent), var(--accent-light));
+  color:var(--primary);
+  padding:14px 32px;
+  border-radius:12px;
+  font-weight:700;
+  text-decoration:none;
+  box-shadow:0 6px 24px rgba(212,160,23,0.3);
+  transition:all 0.3s;
+  font-size:16px;
+}
+.hero-actions .btn-primary:hover {
+  transform:translateY(-3px);
+  box-shadow:0 8px 32px rgba(212,160,23,0.4);
+}
+.hero-actions .btn-secondary {
+  background:rgba(255,255,255,0.15);
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,0.3);
+  color:white;
+  padding:14px 32px;
+  border-radius:12px;
+  font-weight:600;
+  text-decoration:none;
+  transition:all 0.3s;
+  font-size:16px;
+}
+.hero-actions .btn-secondary:hover {
+  background:rgba(255,255,255,0.25);
+  transform:translateY(-2px);
+}
+
+.hero-nav { 
+  position:absolute; 
+  top:50%; 
+  transform:translateY(-50%); 
+  width:100%; 
+  display:flex; 
+  justify-content:space-between; 
+  z-index:4; 
+  padding:0 20px; 
+}
+.hero-nav button{ 
+  background:rgba(255,255,255,0.15); 
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,0.2);
+  color:white; 
+  width:48px;
+  height:48px;
+  border-radius:50%; 
+  cursor:pointer; 
+  transition:all 0.3s;
+  font-size:24px;
+  display:flex;
+  align-items:right;
+  justify-content:center;
+}
+.hero-nav button:hover{ 
+  background:rgba(255,255,255,0.25); 
+  transform:scale(1.1);
+}
+
+.small-dot { 
+  position:absolute; 
+  bottom:30px; 
+  left:50%; 
+  transform:translateX(-50%); 
+  display:flex; 
+  gap:10px; 
+  z-index:4; 
+}
+.dot { 
+  width:12px; 
+  height:12px; 
+  border-radius:50%; 
+  background:rgba(255,255,255,0.4); 
+  cursor:pointer; 
+  transition:all 0.3s;
+  border:2px solid transparent;
+}
+.dot:hover {
+  background:rgba(255,255,255,0.6);
+}
+.dot.active { 
+  background:var(--accent); 
+  transform:scale(1.2);
+  border-color:white;
+}
+
+/* ===== SECTIONS ===== */
+.container { 
+  max-width:1280px; 
+  margin:0 auto; 
+  padding:80px 24px; 
+}
+.section-header {
+  text-align:center;
+  margin-bottom:60px;
+}
+.section-badge {
+  display:inline-block;
+  background:linear-gradient(135deg, rgba(12,94,58,0.1), rgba(12,94,58,0.05));
+  color:var(--primary);
+  padding:8px 20px;
+  border-radius:20px;
+  font-size:14px;
+  font-weight:600;
+  margin-bottom:16px;
+  letter-spacing:0.5px;
+}
+.section-title { 
+  font-size:42px; 
+  color:var(--primary); 
+  margin-bottom:16px;
+  font-weight:800;
+  letter-spacing:-1px;
+}
+.section-desc {
+  font-size:18px;
+  color:var(--muted);
+  max-width:700px;
+  margin:0 auto;
+  line-height:1.7;
+}
+
+/* ===== CARDS ===== */
+.dest-grid { 
+  display:grid; 
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); 
+  gap:32px; 
+}
+.card { 
+  background:var(--card); 
+  border-radius:20px; 
+  overflow:hidden; 
+  box-shadow:0 4px 20px rgba(0,0,0,0.08); 
+  transition:all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border:1px solid rgba(0,0,0,0.05);
+}
+.card:hover{ 
+  transform:translateY(-12px); 
+  box-shadow:0 20px 50px rgba(0,0,0,0.15);
+}
+.card-image {
+  position:relative;
+  overflow:hidden;
+  height:240px;
+}
+.card img{ 
+  width:100%; 
+  height:100%; 
+  object-fit:cover; 
+  transition:transform 0.5s;
+}
+.card:hover img {
+  transform:scale(1.1);
+}
+.card-badge {
+  position:absolute;
+  top:16px;
+  right:16px;
+  background:rgba(255,255,255,0.95);
+  backdrop-filter:blur(10px);
+  padding:6px 14px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:600;
+  color:var(--primary);
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
+.card-body{ 
+  padding:24px; 
+}
+.card-body h3{ 
+  color:var(--primary); 
+  margin-bottom:12px; 
+  font-size:22px;
+  font-weight:700;
+}
+.card-body p{ 
+  color:var(--muted); 
+  margin-bottom:20px; 
+  font-size:15px;
+  line-height:1.6;
+}
+.card-body .card-cta{ 
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 20px; 
+  background:linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color:white;
+  border-radius:10px; 
+  font-weight:600; 
+  text-decoration:none;
+  transition:all 0.3s;
+  font-size:14px;
+}
+.card-body .card-cta:hover {
+  transform:translateX(4px);
+  box-shadow:0 4px 16px rgba(12,94,58,0.25);
+}
+
+/* ===== FORMS ===== */
+.form-wrap { 
+  max-width:800px; 
+  margin:0 auto; 
+  background:var(--card); 
+  padding:40px; 
+  border-radius:20px; 
+  box-shadow:0 10px 40px rgba(0,0,0,0.08);
+  border:1px solid rgba(0,0,0,0.05);
+}
+.form-grid { 
+  display:grid; 
+  grid-template-columns:1fr 1fr; 
+  gap:20px; 
+}
+.form-grid .full{ 
+  grid-column:1 / -1; 
+}
+input, select, textarea {
+  width:100%; 
+  padding:14px 18px; 
+  border-radius:12px; 
+  border:2px solid var(--border);
+  font-size:15px; 
+  outline:none;
+  transition:all 0.3s;
+  font-family:inherit;
+  background:var(--bg);
+}
+input:focus, select:focus, textarea:focus {
+  border-color:var(--primary);
+  background:white;
+  box-shadow:0 0 0 3px rgba(12,94,58,0.1);
+}
+textarea { 
+  min-height:120px; 
+  resize:vertical; 
+}
+.submit { 
+  margin-top:12px; 
+  width:100%;
+  background:linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color:white; 
+  border:none; 
+  padding:16px 24px; 
+  border-radius:12px; 
+  cursor:pointer; 
+  font-weight:700;
+  font-size:16px;
+  transition:all 0.3s;
+  box-shadow:0 4px 16px rgba(12,94,58,0.2);
+}
+.submit:hover{ 
+  transform:translateY(-2px); 
+  box-shadow:0 8px 24px rgba(12,94,58,0.3);
+}
+
+.small-muted { 
+  font-size:13px; 
+  color:var(--muted); 
+  margin-top:12px;
+  text-align:center;
+}
+
+/* ===== MODERN FOOTER ===== */
+.footer { 
+  background:linear-gradient(180deg, var(--primary), var(--primary-dark));
+  color:white; 
+  padding:60px 0 0;
+  margin-top:80px;
+}
+.footer-main {
+  max-width:1280px;
+  margin:0 auto;
+  padding:0 24px 40px;
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:50px;
+}
+.footer-about {
+  max-width:350px;
+}
+.footer-logo {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:20px;
+}
+.footer-logo-icon {
+  width:50px;
+  height:50px;
+  background:rgba(255,255,255,0.15);
+  backdrop-filter:blur(10px);
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.footer-logo-icon svg {
+  width:28px;
+  height:28px;
+  fill:white;
+}
+.footer-logo-text {
+  font-size:24px;
+  font-weight:800;
+  color:white;
+}
+.footer-about p {
+  color:rgba(255,255,255,0.85);
+  line-height:1.7;
+  margin-bottom:24px;
+  font-size:15px;
+}
+.social-links {
+  display:flex;
+  gap:12px;
+}
+.social-links a {
+  width:40px;
+  height:40px;
+  background:rgba(255,255,255,0.15);
+  backdrop-filter:blur(10px);
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  text-decoration:none;
+  transition:all 0.3s;
+  border:1px solid rgba(255,255,255,0.1);
+}
+.social-links a:hover {
+  background:rgba(255,255,255,0.25);
+  transform:translateY(-3px);
+}
+
+.footer-section h4 {
+  font-size:18px;
+  font-weight:700;
+  margin-bottom:20px;
+  color:white;
+}
+.footer-links {
+  list-style:none;
+}
+.footer-links li {
+  margin-bottom:12px;
+}
+.footer-links a {
+  color:rgba(255,255,255,0.85);
+  text-decoration:none;
+  transition:all 0.2s;
+  font-size:15px;
+  display:inline-block;
+}
+.footer-links a:hover {
+  color:var(--accent-light);
+  transform:translateX(4px);
+}
+
+.contact-info {
+  list-style:none;
+}
+.contact-info li {
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  margin-bottom:16px;
+  color:rgba(255,255,255,0.85);
+  font-size:14px;
+}
+.contact-info svg {
+  width:18px;
+  height:18px;
+  fill:var(--accent);
+  flex-shrink:0;
+  margin-top:2px;
+}
+
+.newsletter {
+  margin-top:20px;
+}
+.newsletter-form {
+  display:flex;
+  gap:8px;
+  margin-top:12px;
+}
+.newsletter-form input {
+  flex:1;
+  padding:10px 16px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,0.2);
+  background:rgba(255,255,255,0.1);
+  color:white;
+  font-size:14px;
+}
+.newsletter-form input::placeholder {
+  color:rgba(255,255,255,0.6);
+}
+.newsletter-form button {
+  padding:10px 20px;
+  background:var(--accent);
+  color:var(--primary);
+  border:none;
+  border-radius:10px;
+  font-weight:600;
+  cursor:pointer;
+  transition:all 0.3s;
+  font-size:14px;
+}
+.newsletter-form button:hover {
+  background:var(--accent-light);
+  transform:scale(1.05);
+}
+
+.footer-bottom {
+  border-top:1px solid rgba(255,255,255,0.15);
+  padding:24px;
+  text-align:center;
+}
+.footer-bottom-content {
+  max-width:1280px;
+  margin:0 auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:16px;
+  color:rgba(255,255,255,0.8);
+  font-size:14px;
+}
+.footer-bottom-links {
+  display:flex;
+  gap:24px;
+}
+.footer-bottom-links a {
+  color:rgba(255,255,255,0.8);
+  text-decoration:none;
+  transition:color 0.2s;
+}
+.footer-bottom-links a:hover {
+  color:var(--accent-light);
+}
+
+/* Footer responsive */
+@media (max-width:920px){
+  .footer-main {
+    grid-template-columns:1fr;
+    gap:40px;
+  }
+  .footer-about {
+    max-width:100%;
+  }
+  .footer-bottom-content {
+    flex-direction:column;
+    text-align:center;
+  }
+  .hero-inner h1 { font-size:40px; }
+  .hero-inner p { font-size:16px; }
+  .section-title { font-size:32px; }
+  .form-grid { grid-template-columns:1fr; }
+}
+
+/* ===== BACK TO TOP ===== */
+#backToTop { 
+  position:fixed; 
+  right:24px; 
+  bottom:24px; 
+  width:50px; 
+  height:50px; 
+  display:none;
+  align-items:center; 
+  justify-content:center; 
+  background:linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color:white; 
+  border-radius:50%; 
+  cursor:pointer; 
+  box-shadow:0 4px 20px rgba(12,94,58,0.3);
+  z-index:1100;
+  border:none;
+  transition:all 0.3s;
+  font-size:20px;
+}
+#backToTop:hover {
+  transform:translateY(-4px);
+  box-shadow:0 6px 30px rgba(12,94,58,0.4);
+}
+
+/* ===== TOAST & MODAL ===== */
+.toast { 
+  position:fixed; 
+  right:24px; 
+  bottom:24px; 
+  background:var(--primary);
+  color:white; 
+  padding:16px 24px; 
+  border-radius:12px; 
+  box-shadow:0 4px 20px rgba(12,94,58,0.3);
+  display:none; 
+  z-index:1200;
+  font-weight:600;
+}
+.modal-wrap { 
+  position:fixed; 
+  inset:0; 
+  display:none; 
+  align-items:center; 
+  justify-content:center; 
+  z-index:1300;
+  background:rgba(0,0,0,0.5);
+  backdrop-filter:blur(4px);
+}
+.modal { 
+  background:var(--card); 
+  padding:40px; 
+  border-radius:20px; 
+  box-shadow:0 20px 60px rgba(0,0,0,0.3);
+  max-width:480px; 
+  width:92%; 
+  text-align:center;
+}
+.modal h3 { 
+  margin-bottom:16px; 
+  color:var(--primary);
+  font-size:28px;
+  font-weight:700;
+}
+.modal p { 
+  color:var(--muted); 
+  margin-bottom:24px;
+  font-size:16px;
+}
+</style>
+</head>
+<body>
+
+<!-- MODERN HEADER -->
+<header class="header" id="header">
+  <div class="navbar">
+    <a href="#home" class="logo-container">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <div class="main">Travel Pakistan</div>
+        <div class="sub">Explore Beauty</div>
+      </div>
+    </a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home" class="active">Home</a></li>
+      <li><a href="#destinations">Destinations</a></li>
+      <li><a href="#booking">Booking</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a class="cta-btn" href="#booking">Book Now</a></li>
+    </ul>
+
+    <button class="menu-toggle" id="menuToggle">
+      <svg width="24" height="20" viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="24" height="2" rx="1" fill="white"/>
+        <rect y="9" width="24" height="2" rx="1" fill="white"/>
+        <rect y="18" width="24" height="2" rx="1" fill="white"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-slide" style="background-image:url('img/img/img1.png');"></div>
+<div class="hero-slide" style="background-image:url('img/img/img2.png');"></div>
+<div class="hero-slide" style="background-image:url('img/img/img3.png');"></div>
+
+
+  <div class="hero-overlay"></div>
+
+  <div class="hero-inner">
+    <div class="hero-badge">✈️ Premium Travel Experience</div>
+    <h1 id="heroTitle">Discover Pakistan's Hidden Gems</h1>
+    <p id="heroSub">From majestic mountains to serene valleys, embark on unforgettable journeys across Pakistan's most breathtaking destinations.</p>
+
+    <div class="hero-actions">
+      <a href="#destinations" class="btn-primary">Explore Destinations</a>
+      <a href="#contact" class="btn-secondary">Get in Touch</a>
+    </div>
+  </div>
+
+  <div class="hero-nav">
+    <button id="prevSlide">‹</button>
+    <button id="nextSlide">›</button>
+  </div>
+
+  <div class="small-dot" id="dots"></div>
+</section>
+
+<!-- DESTINATIONS -->
+<section class="container" id="destinations">
+  <div class="section-header">
+    <div class="section-badge">🏔️ Popular Destinations</div>
+    <h2 class="section-title">Explore Pakistan's Beauty</h2>
+    <p class="section-desc">Discover breathtaking landscapes, rich culture, and unforgettable adventures across Pakistan's most stunning destinations.</p>
+  </div>
+
+  <div class="dest-grid">
+    <article class="card">
+      <div class="card-image">
+        <img src="img/img/img4.png" alt="Hunza Valley">
+        <div class="card-badge">Popular</div>
+      </div>
+      <div class="card-body">
+        <h3>Hunza Valley</h3>
+        <p>Ancient forts, alpine views and warm local culture. Perfect for photography and hiking enthusiasts.</p>
+        <a class="card-cta" href="#booking" data-dest="Hunza Valley">
+          Book Trip →
+        </a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-image">
+        <img src="img/img/img5.png" alt="Skardu">
+        <div class="card-badge">Adventure</div>
+      </div>
+      <div class="card-body">
+        <h3>Skardu</h3>
+        <p>Gateway to high altitude treks, pristine lakes and dramatic landscapes for adventurers.</p>
+        <a class="card-cta" href="#booking" data-dest="Skardu">
+          Book Trip →
+        </a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-image">
+        <img src="img/img/img6.png" alt="Swat Valley">
+        <div class="card-badge">Family</div>
+      </div>
+      <div class="card-body">
+        <h3>Swat Valley</h3>
+        <p>Lush green valleys, flowing rivers and peaceful getaways suitable for family trips.</p>
+        <a class="card-cta" href="#booking" data-dest="Swat Valley">
+          Book Trip →
+        </a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-image">
+        <img src="img/img/img7.png" alt="Naran Kaghan">
+        <div class="card-badge">Scenic</div>
+      </div>
+      <div class="card-body">
+        <h3>Naran Kaghan</h3>
+        <p>Crystal clear lakes and long scenic drives—get ready for absolutely stunning views.</p>
+        <a class="card-cta" href="#booking" data-dest="Naran Kaghan">
+          Book Trip →
+        </a>
+      </div>
+    </article>
+    <article class="card">
+  <div class="card-image">
+    <img src="img/img/img8.png" alt="Fairy Meadows">
+    <div class="card-badge">Adventure</div>
+  </div>
+  <div class="card-body">
+    <h3>Fairy Meadows</h3>
+    <p>Experience breathtaking views of Nanga Parbat and pristine meadows. Ideal for camping and photography enthusiasts.</p>
+    <a class="card-cta" href="#booking" data-dest="Fairy Meadows">
+      Book Trip →
+    </a>
+  </div>
+</article>
+
+<article class="card">
+  <div class="card-image">
+    <img src="img/img/img9.png" alt="Neelum Valley">
+    <div class="card-badge">Scenic</div>
+  </div>
+  <div class="card-body">
+    <h3>Neelum Valley</h3>
+    <p>Green hills, rivers, and picturesque villages await you. Perfect for a peaceful and relaxing getaway.</p>
+    <a class="card-cta" href="#booking" data-dest="Neelum Valley">
+      Book Trip →
+    </a>
+  </div>
+</article>
+
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="container" id="booking">
+  <div class="section-header">
+    <div class="section-badge">📅 Easy Booking</div>
+    <h2 class="section-title">Plan Your Perfect Trip</h2>
+    <p class="section-desc">Fill out the form below and we'll help you create an unforgettable travel experience.</p>
+  </div>
+
+  <div class="form-wrap">
+    <form id="bookingForm" method="post" action="booking.php">
+      <div class="form-grid">
+        <input name="name" type="text" placeholder="Full Name" required>
+        <input name="email" type="email" placeholder="Email Address" required>
+        <input name="phone" type="tel" placeholder="Phone (03XXXXXXXXX)" required>
+        <select name="destination" required>
+          <option value="">Select Destination</option>
+          <option>Hunza Valley</option>
+          <option>Skardu</option>
+          <option>Swat Valley</option>
+          <option>Naran Kaghan</option>
+        </select>
+        <input name="date" type="date" required class="full">
+        <textarea name="notes" placeholder="Special requests or requirements (optional)" class="full"></textarea>
+      </div>
+      <button type="submit" class="submit">Confirm Booking</button>
+      <div class="small-muted">🔒 Your information is saved locally in your browser (demo)</div>
+    </form>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="container" id="contact">
+  <div class="section-header">
+    <div class="section-badge">💬 Get in Touch</div>
+    <h2 class="section-title">Contact Us</h2>
+    <p class="section-desc">Have questions? We're here to help. Send us a message and we'll respond as soon as possible.</p>
+  </div>
+
+  <div class="form-wrap">
+    <form id="contactForm" method="post" action="contact.php">
+      <div class="form-grid">
+        <input name="cname" type="text" placeholder="Your Name" required>
+        <input name="cemail" type="email" placeholder="Your Email" required>
+        <textarea name="cmsg" placeholder="Your Message" class="full" required></textarea>
+      </div>
+      <button type="submit" class="submit">Send Message</button>
+      <div class="small-muted">We typically respond within 24 hours</div>
+    </form>
+  </div>
+</section>
+
+<!-- MODERN FOOTER -->
+<footer class="footer">
+  <div class="footer-main">
+    <!-- About Column -->
+    <div class="footer-about">
+      <div class="footer-logo">
+        <div class="footer-logo-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+          </svg>
+        </div>
+        <div class="footer-logo-text">Travel Pakistan</div>
+      </div>
+      <p>Discover the hidden beauty of Pakistan with expertly crafted tours. From mountain peaks to serene valleys, we make your journey unforgettable.</p>
+      <div class="social-links">
+        <a href="#" aria-label="Facebook">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </a>
+        <a href="#" aria-label="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+        </a>
+        <a href="#" aria-label="Twitter">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+          </svg>
+        </a>
+        <a href="#" aria-label="YouTube">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="footer-section">
+      <h4>Quick Links</h4>
+      <ul class="footer-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#destinations">Destinations</a></li>
+        <li><a href="#booking">Book Trip</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Gallery</a></li>
+      </ul>
+    </div>
+
+    <!-- Destinations -->
+    <div class="footer-section">
+      <h4>Top Destinations</h4>
+      <ul class="footer-links">
+        <li><a href="#booking">Hunza Valley</a></li>
+        <li><a href="#booking">Skardu</a></li>
+        <li><a href="#booking">Swat Valley</a></li>
+        <li><a href="#booking">Naran Kaghan</a></li>
+        <li><a href="#booking">Fairy Meadows</a></li>
+        <li><a href="#booking">Neelum Valley</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact Info -->
+    <div class="footer-section">
+      <h4>Get in Touch</h4>
+      <ul class="contact-info">
+        <li>
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+          </svg>
+          <span>Islamabad, Pakistan</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+          </svg>
+          <span>info@travelpakistan.com</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+          </svg>
+          <span>+92 300 1234567</span>
+        </li>
+      </ul>
+
+      <div class="newsletter">
+        <h4 style="font-size:16px;margin-top:20px;margin-bottom:8px;">Newsletter</h4>
+        <form class="newsletter-form" id="newsletterForm">
+          <input type="email" placeholder="Your email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-bottom-content">
+      <div>© <span id="year"></span> Travel Pakistan. All rights reserved. Designed by <strong>Saira Zaman</strong></div>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Back to top -->
+<button id="backToTop">↑</button>
+
+<!-- Toast -->
+<div class="toast" id="toast">Saved!</div>
+
+<!-- Modal -->
+<div class="modal-wrap" id="modalWrap">
+  <div class="modal">
+    <h3>🎉 Booking Confirmed!</h3>
+    <p>Your booking has been saved locally. We'll contact you soon to confirm your trip details.</p>
+    <button id="modalClose" class="submit">Close</button>
+  </div>
+</div>
+<script>
+// Hero Slider
+const slides = document.querySelectorAll('.hero-slide');
+const dotsContainer = document.getElementById('dots');
+let currentSlide = 0;
+
+// Create dots
+slides.forEach((_, i) => {
+  const dot = document.createElement('div');
+  dot.classList.add('dot');
+  if(i === 0) dot.classList.add('active');
+  dot.addEventListener('click', () => goToSlide(i));
+  dotsContainer.appendChild(dot);
+});
+
+const dots = document.querySelectorAll('.dot');
+
+function showSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.classList.toggle('show', i === index);
+    dots[i].classList.toggle('active', i === index);
+  });
+  currentSlide = index;
+}
+
+function nextSlide() {
+  showSlide((currentSlide + 1) % slides.length);
+}
+function prevSlide() {
+  showSlide((currentSlide - 1 + slides.length) % slides.length);
+}
+
+// Auto slide every 5 seconds
+setInterval(nextSlide, 5000);
+
+// Hero nav buttons
+document.getElementById('nextSlide').addEventListener('click', nextSlide);
+document.getElementById('prevSlide').addEventListener('click', prevSlide);
+
+// Show first slide on load
+showSlide(0);
+</script>

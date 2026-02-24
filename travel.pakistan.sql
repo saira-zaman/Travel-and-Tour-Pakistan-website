@@ -1,0 +1,24 @@
+CREATE DATABASE travel_pakistan;
+
+USE travel_pakistan;
+
+-- Bookings Table
+CREATE TABLE bookings (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  phone VARCHAR(20) NOT NULL,
+  destination VARCHAR(255) NOT NULL,
+  date DATE NOT NULL,
+  notes TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Contacts Table
+CREATE TABLE contacts (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  cname VARCHAR(255) NOT NULL,
+  cemail VARCHAR(255) NOT NULL,
+  cmsg TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
